@@ -5,7 +5,8 @@ class FirstGame extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            squares: Array(9).fill("HIDDEN"),
+            shuffledArray: this.createArray(),
+            visibility: Array(16).fill("HIDDEN"),
             openSquares: 0,
             clickable: true,
             firstNumber: null
@@ -14,53 +15,58 @@ class FirstGame extends React.Component {
     }
 
     handleClick(index) {
-        self = this;
+
+        let self = this;
         if (this.state.clickable === false) {
-            alert("You cannot click now!");
+            //alert("You cannot click now!");
             return false;
         }
-        console.log(this.state.firstNumber, index);
-        if (this.state.firstNumber !== null
-            && this.state.firstNumber%2 === 0
-            && index%2 === 0) {
-            console.log("they are even");
-            this.setState({
-                squares: Array(9).fill("OPEN"),
-                openSquares: 0,
-                clickable: true,
-                firstNumber: null
-            });
-            return false;
+        const squares = this.state.visibility.slice();
+        if (this.state.visibility[index] === 'HIDDEN') {
+            squares[index] = 'VISIBLE';
+        } else if (this.state.visibility[index] === 'VISIBLE') {
+            squares[index] = 'HIDDEN';
+        } else { squares[index] = 'OPEN' }
+        console.log(squares[index]);
+        let clickable = this.state.openSquares > 0 ? false : true;
+
+        if (this.state.firstNumber !== null  && this.state.firstNumber !== index &&
+            (this.state.firstNumber%2 === 0 && index === this.state.firstNumber + 1) || (this.state.firstNumber%2 === 1 && index === this.state.firstNumber - 1))
+        {
+            squares[this.state.firstNumber] = "OPEN";
+            squares[index] = "OPEN";
         }
 
-        const squares = this.state.squares.slice();
-        squares[index] = this.state.squares[index] === 'HIDDEN' ? 'VISIBLE' : 'HIDDEN';
-        let clickable = this.state.openSquares > 0 ? false : true;
+        this.setState({
+            visibility: squares,
+            openSquares: this.state.openSquares === 1 ? 0 : this.state.openSquares + 1,
+            clickable: clickable,
+            firstNumber: this.state.openSquares === 0 ? index : null
+        });
+
         if (!clickable) {
             setTimeout(function () {
+                for (let i = 0; i < squares.length; i++) {
+                    if (squares[i] === 'VISIBLE') {
+                        squares[i] = 'HIDDEN';
+                    }
+                }
                 self.setState({
                     clickable: true,
                     openSquares: 0,
                     firstNumber: null,
-                    squares: Array(9).fill("HIDDEN")
+                    visibility: squares
                 });
             }, 2000);
         }
-        this.setState({
-            squares: squares,
-            openSquares: this.state.openSquares === 1 ? 0 : this.state.openSquares + 1,
-            clickable: clickable
-        });
-        if (this.state.openSquares === 0) {
-            this.state.firstNumber = index;
-        }
-        console.log(this.state.openSquares, clickable, squares[index]);
+        console.log(squares);
     }
-    renderSquare(i) {
+    renderSquare(i, key) {
         return <Square
             value={i}
+            key={key}
             onClick={this.handleClick}
-            visible={this.state.squares[i]}
+            visible={this.state.visibility[i]}
             clickable={this.state.clickable}
             />;
     }
@@ -69,23 +75,43 @@ class FirstGame extends React.Component {
         return (
             <div>
                 <h5>Our game field here</h5>
-                <div className="row-of-squares">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="row-of-squares">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="row-of-squares">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
+                <div className="squares-container">
+                    {
+                        this.state.shuffledArray.map((elem, key) => {
+                            return this.renderSquare(elem, key)
+                        })
+                    }
                 </div>
             </div>
         )
+    }
+
+    shuffle(array) {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+    createArray() {
+        const initArray = [];
+        for (let i = 0; i < 16; i++) {
+            initArray.push(i);
+        }
+        const shuffledArray = this.shuffle(initArray);
+        console.log(shuffledArray);
+        return shuffledArray;
     }
 }
 
