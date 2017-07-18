@@ -11,3 +11,8 @@ button.square {
 button.square:nth-child(4n + 1) {
     clear: left;
 }
+
+button.square.hidePicture {
+    background-image: url("/images/cloud-pattern.jpg");
+    background-size: cover;
+}
