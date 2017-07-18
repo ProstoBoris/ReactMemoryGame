@@ -5,3 +5,8 @@ button.square {
     margin: 20px;
     vertical-align: top;
 }
+
+button.square.hidePicture {
+    background-image: url("/images/cloud-pattern.jpg");
+    background-size: cover;
+}
