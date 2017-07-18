@@ -4,4 +4,10 @@ button.square {
     width: 150px;
     margin: 20px;
     vertical-align: top;
+    display: inline-block;
+    float: left;
+}
+
+button.square:nth-child(4n + 1) {
+    clear: left;
 }
