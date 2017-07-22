@@ -13,6 +13,7 @@ class FirstGame extends React.Component {
             attempts: 0
         };
         this.handleClick = this.handleClick.bind(this);
+        this.startGame = this.startGame.bind(this);
     }
 
     handleClick(index) {
@@ -62,6 +63,18 @@ class FirstGame extends React.Component {
             }, 500);
         }
     }
+
+    startGame() {
+        this.setState({
+            shuffledArray: this.createArray(),
+            visibility: Array(16).fill("HIDDEN"),
+            openSquares: 0,
+            clickable: true,
+            firstNumber: null,
+            attempts: 0
+        });
+    }
+
     renderSquare(i, key) {
         return <Square
             value={i}
@@ -84,6 +97,7 @@ class FirstGame extends React.Component {
                     }
                 </div>
                 <h3>Number of attempts: { this.state.attempts }</h3>
+                <button className="btn btn-primary" onClick={this.startGame}>Start New Game</button>
             </div>
         )
     }
