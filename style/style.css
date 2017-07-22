@@ -2,7 +2,7 @@
 button.square {
     height: 150px;
     width: 150px;
-    margin: 20px;
+    margin: 10px;
     vertical-align: top;
     display: inline-block;
     float: left;
@@ -16,3 +16,58 @@ button.square.hidePicture {
     background-image: url("/images/cloud-pattern.jpg");
     background-size: cover;
 }
+
+button.number-0.showPicture,
+button.number-1.showPicture {
+    background-image: url("/images/france-paris.jpg");
+    background-size: cover;
+}
+button.number-2.showPicture,
+button.number-3.showPicture {
+    background-image: url("/images/london.jpg");
+    background-size: cover;
+}
+button.number-4.showPicture,
+button.number-5.showPicture {
+    background-image: url("/images/kiev.jpg");
+    background-size: cover;
+}
+button.number-6.showPicture,
+button.number-7.showPicture {
+    background-image: url("/images/washington.jpg");
+    background-size: cover;
+}
+button.number-8.showPicture,
+button.number-9.showPicture {
+    background-image: url("/images/rome.jpg");
+    background-size: cover;
+}
+button.number-10.showPicture,
+button.number-11.showPicture {
+    background-image: url("/images/Rio-de-Janeiro.jpg");
+    background-size: cover;
+}
+button.number-12.showPicture,
+button.number-13.showPicture {
+    background-image: url("/images/delhi.jpg");
+    background-size: cover;
+}
+button.number-14.showPicture,
+button.number-15.showPicture {
+    background-image: url("/images/prague.jpg");
+    background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

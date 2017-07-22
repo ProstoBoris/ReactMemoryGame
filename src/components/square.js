@@ -13,7 +13,7 @@ class Square extends React.Component {
             <button className={ `square number-${squareNumber} ${addedClass}` }
                     onClick={() => {this.props.onClick(squareNumber)}}
                     clickable={this.props.clickable}
-            >{ this.props.visible !== "HIDDEN" ? squareNumber : ""}</button>
+            ></button>
         )
     }
 }
