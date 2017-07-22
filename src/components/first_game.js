@@ -9,7 +9,8 @@ class FirstGame extends React.Component {
             visibility: Array(16).fill("HIDDEN"),
             openSquares: 0,
             clickable: true,
-            firstNumber: null
+            firstNumber: null,
+            attempts: 0
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -27,7 +28,7 @@ class FirstGame extends React.Component {
         } else if (this.state.visibility[index] === 'VISIBLE') {
             squares[index] = 'HIDDEN';
         } else { squares[index] = 'OPEN' }
-        console.log(squares[index]);
+
         let clickable = this.state.openSquares > 0 ? false : true;
 
         if (this.state.firstNumber !== null  && this.state.firstNumber !== index &&
@@ -41,7 +42,8 @@ class FirstGame extends React.Component {
             visibility: squares,
             openSquares: this.state.openSquares === 1 ? 0 : this.state.openSquares + 1,
             clickable: clickable,
-            firstNumber: this.state.openSquares === 0 ? index : null
+            firstNumber: this.state.openSquares === 0 ? index : null,
+            attempts: this.state.openSquares === 1 ? this.state.attempts + 1 : this.state.attempts
         });
 
         if (!clickable) {
@@ -59,7 +61,6 @@ class FirstGame extends React.Component {
                 });
             }, 500);
         }
-        console.log(squares);
     }
     renderSquare(i, key) {
         return <Square
@@ -82,6 +83,7 @@ class FirstGame extends React.Component {
                         })
                     }
                 </div>
+                <h3>Number of attempts: { this.state.attempts }</h3>
             </div>
         )
     }
