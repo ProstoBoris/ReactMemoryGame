@@ -4,7 +4,7 @@ import FirstGame from "./first_game";
 export default class App extends Component {
 
     handleClick(e) {
-        document.querySelector('h5').innerHTML = "Let's start NOW!";
+        //document.querySelector('h5').innerHTML = "Let's start NOW!";
     }
 
   render() {
@@ -14,9 +14,9 @@ export default class App extends Component {
             <button
                 className="btn btn-primary"
                 onClick={this.handleClick}
-            >Go To the Game
+            >Go To Game
             </button>
-            <FirstGame />
+            {this.props.children}
         </div>
     );
   }

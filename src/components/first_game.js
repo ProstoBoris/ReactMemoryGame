@@ -97,7 +97,7 @@ class FirstGame extends React.Component {
                     }
                 </div>
                 <h3>Number of attempts: { this.state.attempts }</h3>
-                <button className="btn btn-primary" onClick={this.startGame}>Start New Game</button>
+                <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
             </div>
         )
     }
