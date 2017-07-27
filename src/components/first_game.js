@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Square from "./square";
+import { Link } from 'react-router';
 
 class FirstGame extends React.Component {
     constructor(props) {
@@ -88,7 +89,11 @@ class FirstGame extends React.Component {
     render() {
         return (
             <div>
-                <h5>Our game field here</h5>
+                <Link
+                    to="/"
+                    className="btn btn-default">
+                    Go Back
+                </Link>
                 <div className="squares-container">
                     {
                         this.state.shuffledArray.map((elem, key) => {

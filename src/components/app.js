@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import FirstGame from "./first_game";
 
 export default class App extends Component {
-
-    handleClick(e) {
-        //document.querySelector('h5').innerHTML = "Let's start NOW!";
-    }
 
   render() {
     return (
         <div>
-            <h2>React</h2>
-            <button
-                className="btn btn-primary"
-                onClick={this.handleClick}
-            >Go To Game
-            </button>
+            <h2>Memory Game</h2>
+            <h4>World Capitals</h4>
             {this.props.children}
         </div>
     );
