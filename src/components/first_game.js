@@ -88,7 +88,7 @@ class FirstGame extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="content-container">
                 <Link
                     to="/"
                     className="btn btn-default">
@@ -101,8 +101,10 @@ class FirstGame extends React.Component {
                         })
                     }
                 </div>
-                <h3>Number of attempts: { this.state.attempts }</h3>
-                <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
+                <div className="footer-info">
+                    <h3>Number of attempts: { this.state.attempts }</h3>
+                    <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
+                </div>
             </div>
         )
     }
@@ -131,7 +133,6 @@ class FirstGame extends React.Component {
             initArray.push(i);
         }
         const shuffledArray = this.shuffle(initArray);
-        console.log(shuffledArray);
         return shuffledArray;
     }
 }

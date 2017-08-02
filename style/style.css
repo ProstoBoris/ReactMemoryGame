@@ -1,4 +1,14 @@
 
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.squares-container {
+    margin: 1em auto;
+}
+
 button.square {
     height: 150px;
     width: 150px;
@@ -56,6 +66,16 @@ button.number-14.showPicture,
 button.number-15.showPicture {
     background-image: url("/images/prague.jpg");
     background-size: cover;
+}
+
+.footer-info h3 {
+    display: inline-block;
+    margin: 20px 10px;
+}
+
+.footer-info button {
+    float: right;
+    margin: 20px 10px;
 }
 
 
