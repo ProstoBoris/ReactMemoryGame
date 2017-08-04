@@ -5,6 +5,16 @@
     justify-content: center;
 }
 
+.content-container .btn-default {
+    display: flex;
+}
+
+.header h2,
+.header h4 {
+    margin-top: 1em;
+    text-align: center;
+}
+
 .squares-container {
     margin: 1em auto;
 }
@@ -18,7 +28,7 @@ button.square {
     float: left;
 }
 
-button.square:nth-child(4n + 1) {
+button.square:nth-child(4n + 2) {
     clear: left;
 }
 

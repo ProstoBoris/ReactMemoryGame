@@ -89,21 +89,21 @@ class FirstGame extends React.Component {
     render() {
         return (
             <div className="content-container">
-                <Link
-                    to="/"
-                    className="btn btn-default">
-                    Go Back
-                </Link>
                 <div className="squares-container">
+                    <Link
+                        to="/"
+                        className="btn btn-default">
+                        Go Back
+                    </Link>
                     {
                         this.state.shuffledArray.map((elem, key) => {
                             return this.renderSquare(elem, key)
                         })
                     }
-                </div>
-                <div className="footer-info">
-                    <h3>Number of attempts: { this.state.attempts }</h3>
-                    <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
+                    <div className="footer-info">
+                        <h3>Number of attempts: { this.state.attempts }</h3>
+                        <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
+                    </div>
                 </div>
             </div>
         )
