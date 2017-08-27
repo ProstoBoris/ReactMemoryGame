@@ -6,7 +6,6 @@ export default class App extends Component {
     return (
         <div className="header">
             <h2>Memory Game</h2>
-            <h4>World Capitals</h4>
             {this.props.children}
         </div>
     );

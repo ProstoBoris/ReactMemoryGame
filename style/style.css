@@ -1,3 +1,11 @@
+.card-header {
+    text-align: center;
+    margin: 2em auto;
+}
+
+#game1-start-button {
+    text-align: center;
+}
 
 .content-container {
     display: flex;
