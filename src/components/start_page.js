@@ -17,15 +17,22 @@ export default class StartPage extends Component {
                         The second one is more difficult and is about various front-end technologies.
                     </p>
                     <p>
-                        Choose whichever game you like, test your memory and enjoy the game!
+                        Choose whichever game you like, test your memory and enjoy the game!<br />
                         Good luck!
                     </p>
                 </div>
-                <div id="game1-start-button">
+                <div className="game-start-button">
                     <Link
                         to="/game1"
                         className="btn btn-primary btn-lg">
                         World Capitals
+                    </Link>
+                </div>
+                <div className="game-start-button">
+                    <Link
+                        to="/game2"
+                        className="btn btn-primary btn-lg">
+                        Front-End Tools
                     </Link>
                 </div>
             </div>

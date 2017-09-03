@@ -2,32 +2,31 @@
     text-align: center;
     margin: 2em auto;
 }
-
-#game1-start-button {
+.game-start-button {
     text-align: center;
+    margin: 2em auto;
 }
-
+.game-start-button a {
+    width: 11em;
+}
 .content-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
 .content-container .btn-default {
     display: flex;
 }
-
 .header h2,
 .header h4 {
     margin-top: 1em;
     text-align: center;
 }
-
-.squares-container {
+.squares-container,
+.squares-container-25 {
     margin: 1em auto;
 }
-
-button.square {
+.squares-container button.square {
     height: 150px;
     width: 150px;
     margin: 10px;
@@ -35,16 +34,13 @@ button.square {
     display: inline-block;
     float: left;
 }
-
-button.square:nth-child(4n + 2) {
+.squares-container button.square:nth-child(4n + 2) {
     clear: left;
 }
-
 button.square.hidePicture {
     background-image: url("/images/cloud-pattern.jpg");
     background-size: cover;
 }
-
 button.number-0.showPicture,
 button.number-1.showPicture {
     background-image: url("/images/france-paris.jpg");
@@ -85,15 +81,94 @@ button.number-15.showPicture {
     background-image: url("/images/prague.jpg");
     background-size: cover;
 }
-
 .footer-info h3 {
     display: inline-block;
     margin: 20px 10px;
 }
-
 .footer-info button {
     float: right;
     margin: 20px 10px;
+}
+
+/* Styling for the large (front-end) game */
+.squares-container-25 button.square:nth-child(5n + 2) {
+    clear: left;
+}
+.squares-container-25 button.square {
+    height: 120px;
+    width: 120px;
+    margin: 10px;
+    vertical-align: top;
+    display: inline-block;
+    float: left;
+}
+.squares-container-25 button.square.hidePicture {
+    background-image: url("/images/fed.png");
+    background-size: cover;
+}
+.squares-container-25 button.number-0.showPicture,
+.squares-container-25 button.number-1.showPicture {
+    background-image: url("/images/html.png");
+    background-size: cover;
+}
+.squares-container-25 button.number-2.showPicture,
+.squares-container-25 button.number-3.showPicture {
+    background-image: url("/images/css.jpg");
+    background-size: cover;
+}
+.squares-container-25 button.number-4.showPicture,
+.squares-container-25 button.number-5.showPicture {
+    background-image: url("/images/js.jpg");
+    background-size: cover;
+}
+.squares-container-25 button.number-6.showPicture,
+.squares-container-25 button.number-7.showPicture {
+    background-image: url("/images/angular.png");
+    background-size: cover;
+}
+.squares-container-25 button.number-8.showPicture,
+.squares-container-25 button.number-9.showPicture {
+    background-image: url("/images/node.jpg");
+    background-size: cover;
+}
+.squares-container-25 button.number-10.showPicture,
+.squares-container-25 button.number-11.showPicture {
+    background-image: url("/images/mongo.jpg");
+    background-size: cover;
+}
+.squares-container-25 button.number-12.showPicture,
+.squares-container-25 button.number-13.showPicture {
+    background-image: url("/images/ajax.png");
+    background-size: cover;
+}
+.squares-container-25 button.number-14.showPicture,
+.squares-container-25 button.number-15.showPicture {
+    background-image: url("/images/react.png");
+    background-size: 100%;
+}
+.squares-container-25 button.number-16.showPicture,
+.squares-container-25 button.number-17.showPicture {
+    background-image: url("/images/jquery.png");
+    background-size: cover;
+}
+.squares-container-25 button.number-18.showPicture,
+.squares-container-25 button.number-19.showPicture {
+    background-image: url("/images/bootstrap.png");
+    background-size: cover;
+}
+.squares-container-25 button.number-20.showPicture,
+.squares-container-25 button.number-21.showPicture {
+    background-image: url("/images/photoshop.png");
+    background-size: 100%;
+}
+.squares-container-25 button.number-22.showPicture,
+.squares-container-25 button.number-23.showPicture {
+    background-image: url("/images/d3js.png");
+    background-size: cover;
+}
+.squares-container-25 button.number-24.showPicture {
+    background-image: url("/images/laugh.jpg");
+    background-size: cover;
 }
 
 
