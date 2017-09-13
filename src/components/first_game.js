@@ -9,9 +9,11 @@ class FirstGame extends React.Component {
             shuffledArray: this.createArray(),
             visibility: Array(16).fill("HIDDEN"),
             openSquares: 0,
+            matchedSquares: 0,
             clickable: true,
             firstNumber: null,
-            attempts: 0
+            attempts: 0,
+            numberOfGames: 0
         };
         this.handleClick = this.handleClick.bind(this);
         this.startGame = this.startGame.bind(this);
@@ -31,13 +33,16 @@ class FirstGame extends React.Component {
             squares[index] = 'HIDDEN';
         } else { squares[index] = 'OPEN' }
 
-        let clickable = this.state.openSquares > 0 ? false : true;
+        let clickable = (this.state.openSquares > 0 || this.state.matchedSquares >= 16) ? false : true;
 
         if (this.state.firstNumber !== null  && this.state.firstNumber !== index &&
             (this.state.firstNumber%2 === 0 && index === this.state.firstNumber + 1) || (this.state.firstNumber%2 === 1 && index === this.state.firstNumber - 1))
         {
             squares[this.state.firstNumber] = "OPEN";
             squares[index] = "OPEN";
+            this.setState({
+                matchedSquares: this.state.matchedSquares + 2
+            })
         }
 
         this.setState({
@@ -47,8 +52,8 @@ class FirstGame extends React.Component {
             firstNumber: this.state.openSquares === 0 ? index : null,
             attempts: this.state.openSquares === 1 ? this.state.attempts + 1 : this.state.attempts
         });
-
-        if (!clickable) {
+            console.log(this.state.matchedSquares, this.state.numberOfGames);
+        if (!clickable && this.state.matchedSquares < 16) {
             setTimeout(function () {
                 for (let i = 0; i < squares.length; i++) {
                     if (squares[i] === 'VISIBLE') {
@@ -65,14 +70,25 @@ class FirstGame extends React.Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.matchedSquares !== nextState.matchedSquares) {
+            this.setState({
+                numberOfGames: nextState.matchedSquares === 16 ? this.state.numberOfGames + 1 : this.state.numberOfGames
+            });
+        }
+        return true;
+    }
+
     startGame() {
         this.setState({
             shuffledArray: this.createArray(),
             visibility: Array(16).fill("HIDDEN"),
             openSquares: 0,
+            matchedSquares: 0,
             clickable: true,
             firstNumber: null,
-            attempts: 0
+            attempts: 0,
+            numberOfGames: this.state.numberOfGames
         });
     }
 
@@ -104,6 +120,11 @@ class FirstGame extends React.Component {
                         <h3>Number of attempts: { this.state.attempts }</h3>
                         <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
                     </div>
+                </div>
+                <div className="result-container">
+                    <ul>
+                        <li>Result: { this.state.matchedSquares } and { this.state.numberOfGames }</li>
+                    </ul>
                 </div>
             </div>
         )

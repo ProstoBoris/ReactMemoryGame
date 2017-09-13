@@ -11,7 +11,7 @@
 }
 .content-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 }
 .content-container .btn-default {
@@ -88,6 +88,10 @@ button.number-15.showPicture {
 .footer-info button {
     float: right;
     margin: 20px 10px;
+}
+.result-container {
+    border: 2px solid lightblue;
+    width: 25%;
 }
 
 /* Styling for the large (front-end) game */
