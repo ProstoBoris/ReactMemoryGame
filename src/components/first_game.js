@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Square from "./square";
 import { Link } from 'react-router';
+import Result from "./result";
 
 class FirstGame extends React.Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class FirstGame extends React.Component {
             clickable: true,
             firstNumber: null,
             attempts: 0,
-            numberOfGames: 0
+            numberOfGames: 0,
+            finalScore: 0
         };
         this.handleClick = this.handleClick.bind(this);
         this.startGame = this.startGame.bind(this);
@@ -73,7 +75,8 @@ class FirstGame extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state.matchedSquares !== nextState.matchedSquares) {
             this.setState({
-                numberOfGames: nextState.matchedSquares === 16 ? this.state.numberOfGames + 1 : this.state.numberOfGames
+                numberOfGames: nextState.matchedSquares === 16 ? this.state.numberOfGames + 1 : this.state.numberOfGames,
+                finalScore: nextState.matchedSquares === 16 ? nextState.attempts : 0
             });
         }
         return true;
@@ -121,11 +124,10 @@ class FirstGame extends React.Component {
                         <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
                     </div>
                 </div>
-                <div className="result-container">
-                    <ul>
-                        <li>Result: { this.state.matchedSquares } and { this.state.numberOfGames }</li>
-                    </ul>
-                </div>
+                <Result
+                    numberOfGames={this.state.numberOfGames}
+                    finalScore={this.state.finalScore}
+                />
             </div>
         )
     }
