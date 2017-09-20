@@ -10,10 +10,12 @@ class Result extends React.Component {
         return (
             <div className="result-container">
                 <ul>
-                    <li>Result: { this.props.finalScore } and { this.props.numberOfGames }</li>
+                    {this.props.results.map((number, index) =>
+                        <li key={index}>Result: {number}</li>
+                    )}
                 </ul>
             </div>
-        )
+        );
     }
 }
 

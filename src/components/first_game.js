@@ -19,6 +19,7 @@ class FirstGame extends React.Component {
         };
         this.handleClick = this.handleClick.bind(this);
         this.startGame = this.startGame.bind(this);
+        this.results = [1];
     }
 
     handleClick(index) {
@@ -106,6 +107,9 @@ class FirstGame extends React.Component {
     }
 
     render() {
+        if (this.state.matchedSquares === 16) {
+            this.results.push(this.state.finalScore);
+        }
         return (
             <div className="content-container">
                 <div className="squares-container">
@@ -127,6 +131,7 @@ class FirstGame extends React.Component {
                 <Result
                     numberOfGames={this.state.numberOfGames}
                     finalScore={this.state.finalScore}
+                    results={this.results}
                 />
             </div>
         )
