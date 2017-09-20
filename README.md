@@ -24,3 +24,4 @@ Click [here](https://github.com/StephenGrider/ReactStarter/releases) then downlo
 > npm start
 ```
 # ReactMemoryGame
+This is a popular memory game in which you can test and improve you memory.
