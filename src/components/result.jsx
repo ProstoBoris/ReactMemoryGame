@@ -5,7 +5,6 @@ class Result extends React.Component {
         super(props);
 
     }
-
     render() {
         return (
             <div className="result-container">
