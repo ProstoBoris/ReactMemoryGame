@@ -8,13 +8,12 @@ class FirstGame extends React.Component {
         this.state = {
             numberOfGames: 0,
             finalScore: 0,
-            results: [1,2]
+            results: []
         };
         this.showResult = this.showResult.bind(this);
     }
 
     showResult(attempts) {
-        console.log("Cooooool!");
         let numOfGames = this.state.numberOfGames;
         this.setState({
             numberOfGames: numOfGames + 1,
@@ -23,15 +22,19 @@ class FirstGame extends React.Component {
     }
 
     render() {
-                    console.log(this.state.numberOfGames, this.state.finalScore);
+        let gameNumber = this.state.numberOfGames;
+        let score = this.state.finalScore;
+        let newResult = { gameNumber, score };
+        if (gameNumber > 0) {
+            this.state.results.push(newResult);
+        }
+                console.log(this.state.results);
         return (
             <div className="content-container">
                 <Squares
                     onClick={this.showResult}
                 />
                 <Result
-                    numberOfGames={this.state.numberOfGames}
-                    finalScore={this.state.finalScore}
                     results={this.state.results}
                 />
             </div>

@@ -9,8 +9,8 @@ class Result extends React.Component {
         return (
             <div className="result-container">
                 <ul>
-                    {this.props.results.map((number, index) =>
-                        <li key={index}>Result: {number}</li>
+                    {this.props.results.map((game, index) =>
+                        <li key={index}>Game #: {game.gameNumber} -- {game.score}</li>
                     )}
                 </ul>
             </div>

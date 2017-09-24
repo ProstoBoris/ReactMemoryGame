@@ -51,7 +51,6 @@ class Squares extends React.Component {
             firstNumber: this.state.openSquares === 0 ? index : null,
             attempts: this.state.openSquares === 1 ? this.state.attempts + 1 : this.state.attempts
         });
-        console.log(this.state.matchedSquares);
         if (!clickable && this.state.matchedSquares < 16) {
             setTimeout(function () {
                 for (let i = 0; i < squares.length; i++) {
@@ -71,7 +70,7 @@ class Squares extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state.matchedSquares !== nextState.matchedSquares && nextState.matchedSquares === 16) {
-                this.props.onClick(this.state.attempts);
+                this.props.onClick(nextState.attempts);
                 this.setState({
                     matchedSquares: 1
                 });
