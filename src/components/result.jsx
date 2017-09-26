@@ -8,11 +8,18 @@ class Result extends React.Component {
     render() {
         return (
             <div className="result-container">
-                <ul>
-                    {this.props.results.map((game, index) =>
-                        <li key={index}>Game #: {game.gameNumber} -- {game.score}</li>
+                <div className="result-header">
+                    <div>Game #</div> <div>Attempts</div>
+                </div>
+                <div>
+                    {this.props.results.map((game, index) => {
+                            return <div className="result-row">
+                                <div key={index}>{game.gameNumber}</div>
+                                <div>{game.score}</div>
+                            </div>
+                        }
                     )}
-                </ul>
+                </div>
             </div>
         );
     }

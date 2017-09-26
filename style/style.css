@@ -90,8 +90,24 @@ button.number-15.showPicture {
     margin: 20px 10px;
 }
 .result-container {
-    border: 2px solid lightblue;
-    width: 25%;
+    border: 3px outset #eee;
+    width: 20%;
+    margin-left: 2em;
+    padding: 0.5em;
+}
+.result-row {
+    border-bottom: 1px solid #eee;
+    padding: 0.5em 0;
+}
+.result-header div,
+.result-row div {
+    display: inline-block;
+    width: calc(50% - 0.5em);
+    text-align: center;
+    font-weight: bold;
+}
+.result-container .result-row div {
+    font-weight: normal;
 }
 
 /* Styling for the large (front-end) game */
