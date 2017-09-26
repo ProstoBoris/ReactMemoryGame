@@ -12,7 +12,8 @@ class Squares extends React.Component {
             matchedSquares: 0,
             clickable: true,
             firstNumber: null,
-            attempts: 0
+            attempts: 0,
+            gameOver: false
         };
         this.handleClick = this.handleClick.bind(this);
         this.startGame = this.startGame.bind(this);
@@ -69,10 +70,11 @@ class Squares extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.matchedSquares !== nextState.matchedSquares && nextState.matchedSquares === 16) {
+        if (this.state.matchedSquares !== nextState.matchedSquares && nextState.matchedSquares === 2) {
                 this.props.onClick(nextState.attempts);
                 this.setState({
-                    matchedSquares: 1
+                    matchedSquares: 1,
+                    gameOver: true
                 });
         }
         return true;
@@ -86,7 +88,8 @@ class Squares extends React.Component {
             matchedSquares: 0,
             clickable: true,
             firstNumber: null,
-            attempts: 0
+            attempts: 0,
+            gameOver: false
         });
     }
 
@@ -103,6 +106,9 @@ class Squares extends React.Component {
     render() {
         return (
             <div>
+                { this.state.gameOver ?
+                    <h2>Congrats! You did it with {this.props.finalScore} attempts.</h2>
+                    : "" }
                 <div className="squares-container">
                     <Link
                         to="/"
@@ -115,7 +121,7 @@ class Squares extends React.Component {
                         })
                     }
                     <div className="footer-info">
-                        <h3>Number of attempts: { this.state.attempts }</h3>
+                        <h3>Number of attempts: {this.state.attempts}</h3>
                         <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
                     </div>
                 </div>

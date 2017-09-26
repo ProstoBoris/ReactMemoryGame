@@ -33,6 +33,7 @@ class FirstGame extends React.Component {
             <div className="content-container">
                 <Squares
                     onClick={this.showResult}
+                    finalScore={this.state.finalScore}
                 />
                 <Result
                     results={this.state.results}
