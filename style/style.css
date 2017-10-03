@@ -92,7 +92,7 @@ button.number-15.showPicture {
 .result-container {
     border: 3px outset #eee;
     width: 20%;
-    margin-left: 2em;
+    margin: 4em 0 6em 2em;
     padding: 0.5em;
 }
 .result-row {

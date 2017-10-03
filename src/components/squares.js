@@ -13,7 +13,9 @@ class Squares extends React.Component {
             clickable: true,
             firstNumber: null,
             attempts: 0,
-            gameOver: false
+            gameOver: false,
+            opacity: 0,
+            size: 16
         };
         this.handleClick = this.handleClick.bind(this);
         this.startGame = this.startGame.bind(this);
@@ -70,11 +72,16 @@ class Squares extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.matchedSquares !== nextState.matchedSquares && nextState.matchedSquares === 2) {
+        if (this.state.matchedSquares !== nextState.matchedSquares && nextState.matchedSquares === 16) {
                 this.props.onClick(nextState.attempts);
                 this.setState({
                     matchedSquares: 1,
                     gameOver: true
+                });
+                this.setState({opacity: 0, size: 16}, () => {
+                    if(!this.timeout)
+                        clearTimeout(this.timeout);
+                    this.timeout = setTimeout(() => this.setState({opacity:1, size:25}), 20);
                 });
         }
         return true;
@@ -107,7 +114,9 @@ class Squares extends React.Component {
         return (
             <div>
                 { this.state.gameOver ?
-                    <h2>Congrats! You did it with {this.props.finalScore} attempts.</h2>
+                    <h4 style={{opacity: this.state.opacity, fontSize: this.state.size, transition: "opacity 3s, font-size 1s"}}>
+                        { this.props.finalScore < 4 ? "Congrats!" : "" } You did it with {this.props.finalScore} attempts.
+                    </h4>
                     : "" }
                 <div className="squares-container">
                     <Link
