@@ -1,139 +1,45 @@
 import React, { Component } from 'react';
-import Square from "./square";
-import { Link } from 'react-router';
+import Squares25 from "./squares_25";
+import Result from "./result";
 
 class SecondGame extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            shuffledArray: this.createArray(),
-            visibility: Array(25).fill("HIDDEN"),
-            openSquares: 0,
-            clickable: true,
-            firstNumber: null,
-            attempts: 0
+            numberOfGames: 0,
+            finalScore: 0,
+            results: []
         };
-        this.handleClick = this.handleClick.bind(this);
-        this.startGame = this.startGame.bind(this);
+        this.showResult = this.showResult.bind(this);
     }
 
-    handleClick(index) {
-
-        let self = this;
-        if (this.state.clickable === false) {
-            //alert("You cannot click now!");
-            return false;
-        }
-        const squares = this.state.visibility.slice();
-        if (this.state.visibility[index] === 'HIDDEN') {
-            squares[index] = 'VISIBLE';
-        } else if (this.state.visibility[index] === 'VISIBLE') {
-            squares[index] = 'HIDDEN';
-        } else { squares[index] = 'OPEN' }
-
-        let clickable = this.state.openSquares > 0 ? false : true;
-
-        if (this.state.firstNumber !== null  && this.state.firstNumber !== index &&
-            (this.state.firstNumber%2 === 0 && index === this.state.firstNumber + 1) || (this.state.firstNumber%2 === 1 && index === this.state.firstNumber - 1))
-        {
-            squares[this.state.firstNumber] = "OPEN";
-            squares[index] = "OPEN";
-        }
-
+    showResult(attempts) {
+        let numOfGames = this.state.numberOfGames;
         this.setState({
-            visibility: squares,
-            openSquares: this.state.openSquares === 1 ? 0 : this.state.openSquares + 1,
-            clickable: clickable,
-            firstNumber: this.state.openSquares === 0 ? index : null,
-            attempts: this.state.openSquares === 1 ? this.state.attempts + 1 : this.state.attempts
+            numberOfGames: numOfGames + 1,
+            finalScore: attempts
         });
-
-        if (!clickable) {
-            setTimeout(function () {
-                for (let i = 0; i < squares.length; i++) {
-                    if (squares[i] === 'VISIBLE') {
-                        squares[i] = 'HIDDEN';
-                    }
-                }
-                self.setState({
-                    clickable: true,
-                    openSquares: 0,
-                    firstNumber: null,
-                    visibility: squares
-                });
-            }, 500);
-        }
-    }
-
-    startGame() {
-        this.setState({
-            shuffledArray: this.createArray(),
-            visibility: Array(25).fill("HIDDEN"),
-            openSquares: 0,
-            clickable: true,
-            firstNumber: null,
-            attempts: 0
-        });
-    }
-
-    renderSquare(i, key) {
-        return <Square
-            value={i}
-            key={key}
-            onClick={this.handleClick}
-            visible={this.state.visibility[i]}
-            clickable={this.state.clickable}
-        />;
     }
 
     render() {
+        let gameNumber = this.state.numberOfGames;
+        let score = this.state.finalScore;
+        let newResult = { gameNumber, score };
+        if (gameNumber > 0) {
+            this.state.results.push(newResult);
+        }
+        console.log(this.state.results);
         return (
             <div className="content-container">
-                <div className="squares-container-25">
-                    <Link
-                        to="/"
-                        className="btn btn-default">
-                        Go Back
-                    </Link>
-                    {
-                        this.state.shuffledArray.map((elem, key) => {
-                            return this.renderSquare(elem, key)
-                        })
-                    }
-                    <div className="footer-info">
-                        <h3>Number of attempts: { this.state.attempts }</h3>
-                        <button className="btn btn-success" onClick={this.startGame}>Start New Game</button>
-                    </div>
-                </div>
+                <Squares25
+                    onClick={this.showResult}
+                    finalScore={this.state.finalScore}
+                />
+                <Result
+                    results={this.state.results}
+                />
             </div>
         )
-    }
-
-    shuffle(array) {
-        let currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-            console.log(array);
-        return array;
-    }
-    createArray() {
-        const initArray = [];
-        for (let i = 0; i < 25; i++) {
-            initArray.push(i);
-        }
-        const shuffledArray = this.shuffle(initArray);
-        return shuffledArray;
     }
 }
 

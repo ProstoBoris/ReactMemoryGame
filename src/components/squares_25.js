@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Square from "./square";
 import { Link } from 'react-router';
 
-class Squares extends React.Component {
+class Squares25 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             shuffledArray: this.createArray(),
-            visibility: Array(16).fill("HIDDEN"),
+            visibility: Array(25).fill("HIDDEN"),
             openSquares: 0,
             matchedSquares: 0,
             clickable: true,
@@ -35,7 +35,7 @@ class Squares extends React.Component {
             squares[index] = 'HIDDEN';
         } else { squares[index] = 'OPEN' }
 
-        let clickable = (this.state.openSquares > 0 || this.state.matchedSquares >= 16) ? false : true;
+        let clickable = (this.state.openSquares > 0 || this.state.matchedSquares >= 24) ? false : true;
 
         if (this.state.firstNumber !== null  && this.state.firstNumber !== index &&
             (this.state.firstNumber%2 === 0 && index === this.state.firstNumber + 1) || (this.state.firstNumber%2 === 1 && index === this.state.firstNumber - 1))
@@ -54,7 +54,7 @@ class Squares extends React.Component {
             firstNumber: this.state.openSquares === 0 ? index : null,
             attempts: this.state.openSquares === 1 ? this.state.attempts + 1 : this.state.attempts
         });
-        if (!clickable && this.state.matchedSquares < 16) {
+        if (!clickable && this.state.matchedSquares < 24) {
             setTimeout(function () {
                 for (let i = 0; i < squares.length; i++) {
                     if (squares[i] === 'VISIBLE') {
@@ -72,17 +72,17 @@ class Squares extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.matchedSquares !== nextState.matchedSquares && nextState.matchedSquares === 16) {
-                this.props.onClick(nextState.attempts);
-                this.setState({
-                    matchedSquares: 1,
-                    gameOver: true
-                });
-                this.setState({opacity: 0, size: 16}, () => {
-                    if(!this.timeout)
-                        clearTimeout(this.timeout);
-                    this.timeout = setTimeout(() => this.setState({opacity:1, size:25}), 20);
-                });
+        if (this.state.matchedSquares !== nextState.matchedSquares && nextState.matchedSquares === 24) {
+            this.props.onClick(nextState.attempts);
+            this.setState({
+                matchedSquares: 1,
+                gameOver: true
+            });
+            this.setState({opacity: 0, size: 16}, () => {
+                if(!this.timeout)
+                    clearTimeout(this.timeout);
+                this.timeout = setTimeout(() => this.setState({opacity:1, size:25}), 20);
+            });
         }
         return true;
     }
@@ -90,7 +90,7 @@ class Squares extends React.Component {
     startGame() {
         this.setState({
             shuffledArray: this.createArray(),
-            visibility: Array(16).fill("HIDDEN"),
+            visibility: Array(25).fill("HIDDEN"),
             openSquares: 0,
             matchedSquares: 0,
             clickable: true,
@@ -115,10 +115,10 @@ class Squares extends React.Component {
             <div>
                 { this.state.gameOver ?
                     <h4 style={{opacity: this.state.opacity, fontSize: this.state.size, transition: "opacity 3s, font-size 1s"}}>
-                        { this.props.finalScore < 15 ? "Congrats!" : "" } You did it with {this.props.finalScore} attempts.
+                        { this.props.finalScore < 25 ? "Congrats!" : "" } You did it with {this.props.finalScore} attempts.
                     </h4>
                     : "" }
-                <div className="squares-container">
+                <div className="squares-container-25">
                     <Link
                         to="/"
                         className="btn btn-default">
@@ -158,7 +158,7 @@ class Squares extends React.Component {
     }
     createArray() {
         const initArray = [];
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < 25; i++) {
             initArray.push(i);
         }
         const shuffledArray = this.shuffle(initArray);
@@ -166,4 +166,4 @@ class Squares extends React.Component {
     }
 }
 
-export default Squares;
+export default Squares25;
