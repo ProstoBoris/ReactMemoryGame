@@ -37,6 +37,7 @@ class Squares extends React.Component {
 
         let clickable = (this.state.openSquares > 0 || this.state.matchedSquares >= 16) ? false : true;
 
+        // check if 2 open squares match
         if (this.state.firstNumber !== null  && this.state.firstNumber !== index &&
             (this.state.firstNumber%2 === 0 && index === this.state.firstNumber + 1) || (this.state.firstNumber%2 === 1 && index === this.state.firstNumber - 1))
         {
@@ -70,7 +71,7 @@ class Squares extends React.Component {
             }, 500);
         }
     }
-
+    // if all the cards are open, call parent component's showResult() function
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state.matchedSquares !== nextState.matchedSquares && nextState.matchedSquares === 16) {
                 this.props.onClick(nextState.attempts);
@@ -86,7 +87,7 @@ class Squares extends React.Component {
         }
         return true;
     }
-
+    // on pushing 'Start New Game' button set state to initial values
     startGame() {
         this.setState({
             shuffledArray: this.createArray(),
@@ -138,6 +139,7 @@ class Squares extends React.Component {
         )
     }
 
+    // function to shuffle the cards
     shuffle(array) {
         let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -156,6 +158,7 @@ class Squares extends React.Component {
 
         return array;
     }
+    // create shuffled array
     createArray() {
         const initArray = [];
         for (let i = 0; i < 16; i++) {

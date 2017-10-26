@@ -8,7 +8,7 @@ export default class StartPage extends Component {
             <div>
                 <div className="card-header">
                     <p>
-                        This is a popular memory game in which you can test and improve you memory.
+                        This is a popular memory game in which you can test and improve your memory.
                         You should open cards one by one. If the images match, the cards remain open.
                         The goal is to open all the cards in as few attempts as possible.
                     </p>

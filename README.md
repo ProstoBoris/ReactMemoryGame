@@ -24,7 +24,9 @@ Click [here](https://github.com/StephenGrider/ReactStarter/releases) then downlo
 > npm start
 ```
 # ReactMemoryGame
-This is a popular and captivating memory game in which you can test and improve you memory.
+This is a popular and captivating memory game in which you can test and improve your memory.
 I have developed it in React using Stephen Grider's ReduxSimpleStarter as a starting template. Redux is to be added later.
+
 The instructions on running the game is written above.
+
 Train your memory and enjoy the game!
