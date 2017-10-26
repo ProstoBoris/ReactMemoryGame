@@ -15,6 +15,7 @@ export default class StartPage extends Component {
                     <p>
                         The first game is easier and there you should match the pictures of the world capitals.
                         The second one is more difficult and is about various front-end technologies.
+                        Since the second game has an odd number of cards, there is one Joker card that does not have a match.
                     </p>
                     <p>
                         Choose whichever game you like, test your memory and enjoy the game!<br />
