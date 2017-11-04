@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Squares from "./squares";
+import Squares25 from "./squares_25";
 import Result from "./result";
 
-class FirstGame extends React.Component {
+class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,13 +29,18 @@ class FirstGame extends React.Component {
         if (gameNumber > 0) {
             this.state.results.push(newResult);
         }
-                console.log(this.state.results);
         return (
             <div className="content-container">
-                <Squares
-                    onClick={this.showResult}
-                    finalScore={this.state.finalScore}
-                />
+                { this.props.location.pathname === "/game1" ?
+                    <Squares
+                        onClick={this.showResult}
+                        finalScore={this.state.finalScore}
+                    />
+                    :
+                    <Squares25
+                        onClick={this.showResult}
+                        finalScore={this.state.finalScore}
+                    /> }
                 <Result
                     results={this.state.results}
                 />
@@ -43,4 +49,4 @@ class FirstGame extends React.Component {
     }
 }
 
-export default FirstGame;
+export default Game;

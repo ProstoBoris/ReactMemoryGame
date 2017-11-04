@@ -2,14 +2,13 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
-import FirstGame from "./components/first_game";
+import Game from "./components/game";
 import StartPage from "./components/start_page";
-import SecondGame from "./components/second_game";
 
 export default (
         <Route path="/" component={App}>
             <IndexRoute component={StartPage} />
-            <Route path="game1" component={FirstGame} />
-            <Route path="game2" component={SecondGame} />
+            <Route path="game1" component={Game} />
+            <Route path="game2" component={Game} />
         </Route>
 );
